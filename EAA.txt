@@ -1,0 +1,12 @@
+1.如果app的名字比较长  最好hover的时候可以显示全称             0
+2. aws app --- 已经分配了这个app并且设置了role的user， 重新进入编辑 attribute页面， role没有选中
+3.edit user attributes 窗口的first name字段  如果用户有设置Alias  需要显示用户的Alias           0
+4.若有user 未 assign 给任何 app 时， add application的入口也应显示出来                  0
+5.onboarding--assignment --APPLICATION这边建议hover  app的时候加unassign（个人的才显示unassign，group的不显示）                             0
+6.site admin在user detail--assignment页面 应没有add application的权限
+7. 我在application页面assign user后TYPE 是 Individual ，  但是到这个user 的detail--assigment  显示的group  （看到接口返回的assign_type是0）                 0
+
+
+接口问题：
+1.onboarding那边 add/edit applicaiton， gsuite/aws/dropbox 这三个app报错 
+2.atlassion app为啥在assignment 页面显示的是他的两个links，  应该显示的是他的atlassian app name把
