@@ -5,7 +5,7 @@
 5.onboarding--assignment --APPLICATION这边建议hover  app的时候加unassign（个人的才显示unassign，group的不显示）                             0
 6.site admin在user detail--assignment页面 应没有add application的权限
 7. 我在application页面assign user后TYPE 是 Individual ，  但是到这个user 的detail--assigment  显示的group  （看到接口返回的assign_type是0）                 0
-
++
 
 接口问题：
 1.onboarding那边 add/edit applicaiton， gsuite/aws/dropbox 这三个app报错 
