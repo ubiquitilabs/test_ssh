@@ -1,0 +1,36 @@
+1. 用户add custom role 后，在 admin tab 列表下，未显示添加的 role name
+2. 用户add custom role 后， 在 user tab 列表下，建议用户名称加个custom admin的标识
+3. role --点开某条role detail，然后关闭后，点击add custom role， permissions 会带上一条role detail的信息（比如上一条点开是全选edit  则添加下一条也是全选edit）
+4. 添加 permission range是 only site 的custom role 成功后，点击查看该 role detail ，networks 和applications 依旧会显示出来
+5. 给用户 add 自定义角色后，用户登录页面报没有权限（ scope 配置的 privilege 缺了，导致 location 那边一个接口权限校验失败）
+6. role tab 列表 count 是一直累加的   用户remove role后  count没有减少
+
+
+
+
+LDAP
+FE：
+1.. LDAP  import now>full import > 勾选默认勾选 auto import  to UID >底下 import new user to group 应默认添加根组织          V
+2.full import> 勾选 auto import ，若uid有deactivated的用户 ，import 完后 import completed的窗口需要显示import 失败的原因  接口有返回  （手动import - import completed的窗口才有显示）     V
+3.confirm成功页面会闪烁两次 
+
+BE：
+1. LDAP  import by rule/ full import ,不勾选 auto import  to UID,点击import，弹窗显示的界面在 Importing users to directory (Step 1/2) ，正确应是(Step 2/2)                              V
+2. LDAP import by rule/full import ,勾选 auto import  to UID，点击import ， 弹窗显示的界面在 Importing users to Directory（Step 1/3），接口返回step 是1  ，正确 step 应是2               V     
+3.LDAP :import new user into UID ：627人  37分钟
+4. 手动comfirm 状态是deactivated的uid 用户 ，接口会报错                                    V 
+5.我将已经assign到uid的26个用户在uid 给deactivated后再删除， 回到ldap 执行full import > 勾选 auto import的，再import的过程中会出现两次 import to directory （import 成功后的弹窗数据也不太对） V
+6.我将出现在 import 列表的且是完全匹配的用户在uid 给删除后>回到 ldap 页面执行 import now > auto import勾选,然后confirm 后> 这个用户没有自动添加到 uid ,而是继续在 import 列表 而且状态是 no match的状态                  V
+7.手动或者自动导入>只导入一个失败的用户而已， 窗口既提示了 1 个用户导入失败 又提示了 1 个用户merged 成功
+8.将出现在 import 列表的且是完全匹配的用户在uid 给删除后 > 回到 ldap 页面，勾选用户手动执行 confirm，会有弹窗显示1 user merged successful  但是这个用户没有自动添加到 uid , 而是继续在 import 列表 而且状态是 no match的状态
+9.AD：import new user into UID ：923人  1小时36分钟    ，一共1039人，导入到923人后停不下来，接口一直在请求，但是用户不再新增
+10.ad 全量导入>勾选auto import > add group >  导入成功的用户没有加入到对应的group下         V 
+
+
+
+
+MIS
+1.user页面的pagesize你传的是100  但是页面数量还么到100 为啥我滚动一下它就请求下一页的接口了
+2.EAA-MIS的general再这个页面修改name  没有请求接口
+3.EAA edit group role 保存后再重新打开会不显示 修改后的 role（接口没有返回）
+4.user页面 再火狐浏览器 会出现字母被截断三分之一
